@@ -1,6 +1,6 @@
 let MAX_AGE = 100
 
-interface IPerson {
+export interface IPerson {
     name: string
     age: number
 }
@@ -13,4 +13,5 @@ function makeRandomNumber(max: number = MAX_AGE): number {
     return Math.ceil((Math.random() * max))
 }
 
-const makePerson = (name: string, age: number = makeRandomNumber()) => ({name, age})
+export const makePerson = (name: string,
+    age: number = makeRandomNumber()): IPerson => ({name, age})
