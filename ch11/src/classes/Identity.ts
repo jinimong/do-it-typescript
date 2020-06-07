@@ -1,6 +1,6 @@
-import { IApplicative, ISetiod } from '../interfaces';
+import { IApplicative, IChain, ISetiod } from '../interfaces';
 
-export class Identity<T> implements ISetiod<T>, IApplicative<T> {
+export class Identity<T> implements ISetiod<T>, IChain<T>, IApplicative<T> {
   constructor(private _value: T) {}
   value() {
     return this._value;
@@ -22,5 +22,8 @@ export class Identity<T> implements ISetiod<T>, IApplicative<T> {
   }
   static of<T>(value: T): Identity<T> {
     return new Identity<T>(value);
+  }
+  chain<U>(fn: (T) => U): U {
+    return fn(this.value());
   }
 }
