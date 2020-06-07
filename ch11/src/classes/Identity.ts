@@ -1,6 +1,6 @@
-import { ISetiod } from '../interfaces';
+import { IFunctor, ISetiod } from '../interfaces';
 
-export class Identity<T> implements ISetiod<T> {
+export class Identity<T> implements ISetiod<T>, IFunctor<T> {
   constructor(private _value: T) {}
   value() {
     return this._value;
@@ -10,5 +10,8 @@ export class Identity<T> implements ISetiod<T> {
       return this.value() == that.value();
     }
     return false;
+  }
+  map<U>(fn: (x: T) => U) {
+    return new Identity<U>(fn(this.value()));
   }
 }
