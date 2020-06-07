@@ -11,3 +11,4 @@ export class Maybe<T> {
 }
 
 export type IMaybe<T> = _IMaybe<T> & IMonad<T>;
+export { Just, Nothing, IMonad };
